@@ -1,19 +1,23 @@
 <div>
 
 
-    <x-button label="Open" onclick="$openModal('simpleModal')" primary />
+    <x-button.circle label="Open" onclick="$openModal('simpleModal')" primary icon="pencil" />
 
     <x-modal wire:model.defer="simpleModal">
         <x-card title="Consent Terms">
             <p>
-                <x-datetime-picker label="Appointment Date" without-time="true" placeholder="Appointment Date"
-                    wire:model.defer="normalPicker" />
+                <x-datetime-picker label="Appointment Date" display-format="DD/MM/YYYY" without-time="true"
+                    placeholder="Appointment Date" wire:model.defer="date" />
             </p>
+            <div class="mb-3">
+                <x-select label="Search a User" wire:model.defer="empleado_id" multiselect placeholder="Select some user"
+                    :async-data="route('users.index')" option-label="name" option-description="username" option-value="id" />
+            </div>
 
             <x-slot name="footer">
                 <div class="flex justify-end gap-x-4">
                     <x-button flat label="Cancel" x-on:click="close" />
-                    <x-button primary label="I Agree" x-on:click="close" />
+                    <x-button primary label="Guardar" wire:click="save()" />
                 </div>
             </x-slot>
         </x-card>
@@ -22,21 +26,12 @@
     <x-button label="Open" onclick="$openModal('cardModal')" primary />
 
     <x-modal.card title="Edit Customer" blur show name="myModal" wire:model.defer="cardModal">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <x-input label="Name" placeholder="Your full name" />
-            <x-input label="Phone" placeholder="USA phone" />
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 
-            <div class="col-span-1 sm:col-span-2">
-                <x-input label="Email" placeholder="example@mail.com" />
+            <div>
+
             </div>
 
-            <div
-                class="col-span-1 sm:col-span-2 cursor-pointer bg-gray-100 dark:bg-secondary-700 rounded-xl shadow-md h-72 flex items-center justify-center">
-                <div class="flex flex-col items-center justify-center">
-                    <x-icon name="cloud-upload" class="w-16 h-16 text-blue-600 dark:text-teal-600" />
-                    <p class="text-blue-600 dark:text-teal-600">Click or drop files here</p>
-                </div>
-            </div>
         </div>
 
         <x-slot name="footer">
@@ -52,4 +47,10 @@
     </x-modal.card>
 
 
+
+    <div>
+        <x-select label="Search a Empleado" wire:model.defer="model" searchable="false"
+            placeholder="Select some empleado" :async-data="route('medicos.index')" option-label="fullname" option-value="id" />
+        <x-button info wire:click="kk()">Save</x-button>
+    </div>
 </div>
