@@ -13,14 +13,16 @@ class EmpleadoController extends Controller
     public function index(Request $request)
     {
         return Empleado::query()
-            ->select('id', 'num_empleado', 'name', 'father_lastname', 'mother_lastname')
+            ->select('id', 'num_empleado', 'name', 'father_lastname', 'mother_lastname', 'deparment_id')
             ->orderBy('num_empleado')
+            ->whereIn('deparment_id',['19','27'])
             ->when(
                 $request->search,
                 fn (Builder $query) => $query
                     ->where('name', 'like', "%{$request->search}%")
                     ->orWhere('father_lastname', 'like', "%{$request->search}%")
                     ->orWhere('num_empleado', 'like', "%{$request->search}%")
+                    ->whereIn('deparment_id',['19','27'])
             )
             ->when(
                 $request->exists('selected'),

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\EmpleadoController;
+use App\Http\Controllers\Api\CodigoIncidenciaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('users', UserController::class);
 
 Route::apiResource('medicos', EmpleadoController::class);
+
+Route::apiResource('codigos_incidencias', CodigoIncidenciaController::class);

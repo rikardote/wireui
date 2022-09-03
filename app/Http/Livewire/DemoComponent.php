@@ -8,13 +8,16 @@ class DemoComponent extends Component
 {
     public $empleado_id;
     public $date;
+    public $vacaciones = false;
 
 
     public function render()
     {
         return view('livewire.demo-component');
     }
-    public function save(){
-        dd($this->date);
+    public function vacaciones(){
+        dd('teste');
+        $this->vacaciones = true;
     }
+
 }

@@ -12,7 +12,7 @@ class Empleado extends Model
 
     protected $guarded = [];
 
-     protected $appends = ['fullname'];
+    protected $appends = ['fullname'];
 
 
     public function getFullNameAttribute()
